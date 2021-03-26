@@ -60,16 +60,6 @@ class InfoCog(commands.Cog):
         await ctx.send(f"Bot has been {self.pretty_print_uptime(delta)}\nServer has \
         been {self.get_server_uptime()}")
 
-    """
-    @commands.command()
-    async def poll(self, ctx, *arg):
-        "Adds (a) reaction(s) to a poll message with the number immediately after poll"
-        for i in range(arg1):
-            ctx.send('I\'m not implemented yet')
-            #
-            #await ctx.message.add_reaction('\U0001F3B2')
-    """
-
     @commands.command(name='vaccines', aliases=['vc', 'vaccine', 'vaccinations', 'vaccination'])
     async def vaccines(self, ctx, loc="United States"):
         """
@@ -87,7 +77,7 @@ class InfoCog(commands.Cog):
 
         state_dat = self.sll(states_js["vaccination_data"], loc)
         dat = None
-        if state_dat is None: #Should only do extra work if can't find state data
+        if state_dat is None: # Should only do extra work if can't find state data
             dat = self.gll(js, self.normalize_location(loc))
 
         msg = ""
@@ -101,7 +91,7 @@ class InfoCog(commands.Cog):
                 f"{ad2}({state_dat['Administered_Dose2_Pop_Pct']}%) persons who have received Dose 2")
 
         elif dat is not None:
-            #Format the number with commas to make it easier to read
+            # Format the number with commas to make it easier to read
             tot = "{:,}".format(int(dat['total_vaccinations']))
             msg = f"In {loc} as of {dat['date']}, there have been {tot}\
             vaccinations, totalling {dat['total_vaccinations_per_hundred']}% of\
@@ -174,7 +164,7 @@ class InfoCog(commands.Cog):
         """
         await ctx.send("PReSEnting: https://github.com/Asterisk007/prse\n[This programming language is not endorsed by the University, nor this Discord server.]")
 
-    # detect stock tickers and display their current price
+    # Detect stock tickers and display their current price
     @commands.Cog.listener()
     async def on_message(self, payload):
         max_tickers = 10 # adjusts the max amount of tickers the bot will fetch
@@ -231,6 +221,6 @@ class InfoCog(commands.Cog):
         channel = payload.channel #await discord.Client.fetch_channel(Cog, payload.channel.id)
         await channel.send(output_msg)
 
-
+# Adds the cog to the bot
 def setup(bot):
     bot.add_cog(InfoCog(bot))

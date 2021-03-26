@@ -220,7 +220,7 @@ class FunCog(commands.Cog):
                 await ctx.send("https://c.tenor.com/d0VNnBZkSUkAAAAM/bongocat-banhammer.gif")
                 return
         await ctx.send(message)
-            
 
+# Adds the cog to the bot
 def setup(bot):
     bot.add_cog(FunCog(bot))
